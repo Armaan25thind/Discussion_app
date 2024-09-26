@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Portal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .left-pane {
+            width: 30%;
+            background: #f4f4f4;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .right-pane {
+            width: 70%;
+            padding: 20px;
+        }
+        .header {
+            background: #00796b;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.5em;
+        }
+        .section-title {
+            color: #00796b;
+            font-size: 1.3em;
+        }
+        .search-box {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        .search-box button {
+            background: #00796b;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .search-box button:hover {
+            background: #005a4f;
+        }
+        .question-list {
+            margin-top: 10px;
+            list-style: none;
+            padding: 0;
+        }
+        .question-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .question-form {
+            max-width: 500px;
+            margin: auto;
+        }
+        .question-form input,
+        .question-form textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .question-form button {
+            background: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .question-form button:hover {
+            background: #005a4f;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Discussion Portal
+    </div>
+    <div class="container">
+        <div class="left-pane">
+            <h2 class="section-title">New Question Form</h2>
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Search question...">
+                <button>Search</button>
+            </div>
+            <ul id="questionList" class="question-list">
+            </ul>
+        </div>
+        
+        <div class="right-pane">
+            <div class="question-form">
+                <h2>Welcome to Discussion Portal!</h2>
+                <p>Enter a subject and question to get started</p>
+                <input type="text" id="subject" placeholder="Subject" required>
+                <textarea id="question" rows="5" placeholder="Question" required></textarea>
+                <button onclick="addQuestion()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addQuestion() {
+            const subject = document.getElementById('subject').value.trim();
+            const question = document.getElementById('question').value.trim();
+
+            if (subject && question) {
+                const questionList = document.getElementById('questionList');
+                const newQuestionItem = document.createElement('li');
+                newQuestionItem.className = 'question-item';
+                newQuestionItem.textContent = `${subject}: ${question}`;
+                questionList.appendChild(newQuestionItem);
+
+                document.getElementById('subject').value = '';
+                document.getElementById('question').value = '';
+            } else {
+                alert('Please fill in both the subject and question.');
+            }
+        }
+    </script>
+</body>
+</html>
